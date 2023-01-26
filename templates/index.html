@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block listage %}
+
+
+
+
+{% for film in films %}
+
+<tr>
+    <td> {{ film  }}</td>
+    <td> {{ films[film] }} </td>
+</tr>
+
+{% endfor %}
+
+
+{% endblock %}
