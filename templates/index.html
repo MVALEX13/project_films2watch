@@ -7,8 +7,8 @@
 {% for film in films %}
 
 <tr>
-    <td> {{ film  }}</td>
-    <td> {{ films[film] }} </td>
+    <td> {{ film['movie_title'] }}</td>
+    <td> {{ film['rating'] }} </td>
 </tr>
 
 {% endfor %}

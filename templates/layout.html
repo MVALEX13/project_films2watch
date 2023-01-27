@@ -42,25 +42,31 @@
 
         <!-- BLOCK pour le listage des films-->
         <section class="container">
-              
             <div class="my-3 p-3 bg-body">
-            <table class="table">
-                <thead>
-                    <tr>
-                      <th scope="col">movie name</th>
-                      <th scope="col">rating</th>
-                    </tr>
-                </thead>
-                <tbody>
-                        {% block listage %}{% endblock %}
-                </tbody>
-            </table>
-
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">movie name</th>
+                        <th scope="col">rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            {% block listage %}{% endblock %}
+                    </tbody>
+                </table>
             </div>
-              
-               
         </section>
-        
+
+        <!-- BLOC for cleaning button-->
+        <section class="px-4 py-5 my-5 text-center">
+            <div class="col-lg-6 mx-auto">
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <form action="/clean" method="get" class="col">
+                        <button type="submit" class="btn btn-primary"> clean table </button>
+                    </form>
+                </div>
+            </div>
+        </section>
     </body>
     
 </html>
