@@ -5,7 +5,8 @@ DROP TABLE IF EXISTS movies;
 CREATE TABLE movies(
 id INTEGER PRIMARY KEY,
 movie_title TEXT NOT NULL,
+author TEXT NOT NULL,
 rating REAL);
 
 /* on remplit la base de données avec un élément (test)*/
-INSERT INTO movies (movie_title,rating) VALUES("mulan",4.0);
+INSERT INTO movies (movie_title,author,rating) VALUES("mulan","user1",4.0);

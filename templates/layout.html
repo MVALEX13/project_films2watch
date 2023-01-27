@@ -39,6 +39,7 @@
                 </div>
             </div>
         </section>
+        
 
         <!-- BLOCK pour le listage des films-->
         <section class="container">
@@ -46,9 +47,10 @@
                 <table class="table">
                     <thead>
                         <tr>
-                        <th scope="col">movie name</th>
-                        <th scope="col">rating</th>
-                        <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col">movie name</th>
+                            <th scope="col">rating</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,12 +60,31 @@
             </div>
         </section>
 
+
         <!-- BLOC for cleaning button-->
         <section class="text-center">
             <form action="/clean" method="get" class="col">
                 <button type="submit" class="btn btn-primary"> clean table </button>
             </form>
         </section>
+
+        <footer class="px-4 py-5 my-5 text-center bg-primary">
+            <div class="col-lg-6 mx-auto">
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <form action="/logout" method="get" class="col">
+
+                        <div class="mb-3">
+                            <label for="formGroupExampleInput" class="form-label">You're connected as {{ session.name.upper() }} </label>
+                            <button type="submit" class="btn btn-secondary"> disconnect </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </footer>
+
+
+
     </body>
     
 </html>

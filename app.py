@@ -19,7 +19,7 @@ def get_db_data():
         conn = sqlite3.connect('movies.db')
         conn.row_factory = sqlite3.Row                              # instead of having tuples we get dictionnary (easier to use)
         cur = conn.cursor()                                         # cursor is the object allowing us to interact with the database
-        cur.execute("SELECT * FROM movies;")                        # execute what's contained by the cursor
+        cur.execute("SELECT * FROM movies ORDER BY rating DESC;")                        # execute what's contained by the cursor
     return cur.fetchall()                                           # fetchall in order to get the output of the previous SQL command
 
 ### insert a new movie into the database (insert a new line) ###
@@ -28,7 +28,7 @@ def set_db_data(input_movie, input_rating):
     if db is None:
         conn = sqlite3.connect('movies.db')
         cur = conn.cursor()
-    cur.execute("INSERT INTO movies (movie_title,rating) VALUES(?,?)",(input_movie,input_rating))
+    cur.execute("INSERT INTO movies (movie_title,author,rating) VALUES(?,?,?)",(input_movie,session["name"],input_rating))
     conn.commit()
 
 ### delete all the row of the database table ###
@@ -64,6 +64,13 @@ def login():
 		# redirect to the main page
 		return redirect("/")
 	return render_template("login.html")
+
+### logout ###
+@app.route('/logout',methods=["GET"])
+def logout():
+    session["name"] = None
+    return redirect("/")
+
 
 
 ### general view ###

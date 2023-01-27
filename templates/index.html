@@ -3,10 +3,9 @@
 
 
 
-
-{% for film in films %}
-
-<tr>
+<!-- films variable used in parameters of the render_template-->
+{% for film in films %}                                                             
+    <td><strong class="d-block text-gray-dark">@ {{ film['author'] }}</strong></td>
     <td> {{ film['movie_title'] }}</td>
     <td> {{ film['rating'] }} </td>
     <td>
