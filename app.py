@@ -1,9 +1,13 @@
 
-from flask import Flask,g, render_template, request, redirect
+from flask import Flask,g, render_template, request, redirect, session
+from flask_session import Session
 
 import sqlite3
 
 app = Flask(__name__)
+app.config["SESSION_PERMANENT"] = False                            # this session has a default time limit of some number of minutes or hours or days after which it will expire.
+app.config["SESSION_TYPE"] = "filesystem"                          # It will store in the hard drive (these files are stored under a /flask_session folder in your config directory.)
+Session(app)                                                       # sessioning with the app ENABLED
 
 
 ### FUNCTIONS ###
@@ -50,9 +54,23 @@ def remove_movie():
 
 ### VIEWS ###
 
+### login ###
+@app.route("/login", methods=["GET"])
+def login():
+# if form is submited
+	if request.args.get("username"):
+		# record the user name
+		session["name"] = request.args.get("username")
+		# redirect to the main page
+		return redirect("/")
+	return render_template("login.html")
+
+
 ### general view ###
 @app.route("/", methods = ["GET"])
 def index():
+    if not session.get("name"):
+        return redirect("/login")
     if  request.args.get("movie_name"):                              # only if the user filled the dorm
         movie_name = request.args.get("movie_name")
         movie_rating = request.args.get("movie_rating")              # access the cursor in order to interact with the database
@@ -82,7 +100,7 @@ def close_connection(exception):
 
 ### DOCUMENTATION 📚📚📚 ###
 """
-to access the request argument with GET method => request.args.get("argument_name")
+to access the request argument with GET method  => request.args.get("argument_name")
 to access the request argument with POST method => request.form.get("argument_name")
 """
 
